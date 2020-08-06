@@ -41,21 +41,41 @@ public class Common {
                 .get();
     }
 
-    public static void clickHideCheckbox(@NonNull WebElement parentElement, @NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
+    public static void enableHideCheckbox(@NonNull WebElement parentElement, @NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
         run(() -> wait.until(ExpectedConditions.elementToBeClickable(parentElement)))
                 .andThen(() -> run(() -> {
                     if (!checkbox.isDisplayed()) {
                         parentElement.click();
                     }
                 }).get())
-                .andThen(() -> clickCheckbox(checkbox, wait))
+                .andThen(() -> enableCheckbox(checkbox, wait))
                 .get();
     }
 
-    public static void clickCheckbox(@NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
+    public static void enableCheckbox(@NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
         run(() -> wait.until(ExpectedConditions.elementToBeClickable(checkbox)))
                 .andThen(() -> {
                     if (!checkbox.isSelected()) {
+                        checkbox.click();
+                    }
+                }).get();
+    }
+
+    public static void disableHideCheckbox(@NonNull WebElement parentElement, @NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
+        run(() -> wait.until(ExpectedConditions.elementToBeClickable(parentElement)))
+                .andThen(() -> run(() -> {
+                    if (!checkbox.isDisplayed()) {
+                        parentElement.click();
+                    }
+                }).get())
+                .andThen(() -> disableCheckbox(checkbox, wait))
+                .get();
+    }
+
+    public static void disableCheckbox(@NonNull WebElement checkbox, @NonNull WebDriverWait wait) {
+        run(() -> wait.until(ExpectedConditions.elementToBeClickable(checkbox)))
+                .andThen(() -> {
+                    if (checkbox.isSelected()) {
                         checkbox.click();
                     }
                 }).get();

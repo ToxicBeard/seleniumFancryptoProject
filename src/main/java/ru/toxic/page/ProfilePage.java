@@ -136,35 +136,71 @@ public class ProfilePage {
         deleteAccountButton.click();
     }
 
+    public void clickPreferencesButton(){
+        preferencesButton.click();
+    }
+
     public void enableStopSalesCheckbox(){
-        clickHideCheckbox(preferencesButton, stopSalesCheckbox, wait);
+        enableHideCheckbox(preferencesButton, stopSalesCheckbox, wait);
     }
 
     public void enableStopBuysCheckbox(){
-        clickHideCheckbox(preferencesButton, stopBuysCheckbox, wait);
+        enableHideCheckbox(preferencesButton, stopBuysCheckbox, wait);
     }
 
     public void enableSendContactsNotificationsCheckbox(){
-        clickHideCheckbox(preferencesButton, sendContactsNotificationsCheckbox, wait);
+        enableHideCheckbox(preferencesButton, sendContactsNotificationsCheckbox, wait);
     }
 
     public void enableSendPayNotificationsCheckbox(){
-        clickHideCheckbox(preferencesButton, sendPayNotificationsCheckbox, wait);
+        enableHideCheckbox(preferencesButton, sendPayNotificationsCheckbox, wait);
     }
 
     public void enableSendBitcoinsNotificationsCheckbox(){
-        clickHideCheckbox(preferencesButton, sendBitcoinsNotificationsCheckbox, wait);
+        enableHideCheckbox(preferencesButton, sendBitcoinsNotificationsCheckbox, wait);
     }
 
     public void enableProvideAsVerifiedCheckbox(){
-        clickHideCheckbox(preferencesButton, provideAsVerifiedCheckbox, wait);
+        enableHideCheckbox(preferencesButton, provideAsVerifiedCheckbox, wait);
     }
 
     public void enableOffConfidentiallDataToEmailCheckbox(){
-        clickHideCheckbox(preferencesButton, offConfidentiallDataToEmailCheckbox, wait);
+        enableHideCheckbox(preferencesButton, offConfidentiallDataToEmailCheckbox, wait);
     }
 
     public void enableEnableWebNotificationsCheckbox(){
-        clickHideCheckbox(preferencesButton, enableWebNotificationsCheckbox, wait);
+        enableHideCheckbox(preferencesButton, enableWebNotificationsCheckbox, wait);
+    }
+
+    public void disableStopSalesCheckbox(){
+        disableHideCheckbox(preferencesButton, stopSalesCheckbox, wait);
+    }
+
+    public void disableStopBuysCheckbox(){
+        disableHideCheckbox(preferencesButton, stopBuysCheckbox, wait);
+    }
+
+    public void disableSendContactsNotificationsCheckbox(){
+        disableHideCheckbox(preferencesButton, sendContactsNotificationsCheckbox, wait);
+    }
+
+    public void disableSendPayNotificationsCheckbox(){
+        disableHideCheckbox(preferencesButton, sendPayNotificationsCheckbox, wait);
+    }
+
+    public void disableSendBitcoinsNotificationsCheckbox(){
+        disableHideCheckbox(preferencesButton, sendBitcoinsNotificationsCheckbox, wait);
+    }
+
+    public void disableProvideAsVerifiedCheckbox(){
+        disableHideCheckbox(preferencesButton, provideAsVerifiedCheckbox, wait);
+    }
+
+    public void disableOffConfidentiallDataToEmailCheckbox(){
+        disableHideCheckbox(preferencesButton, offConfidentiallDataToEmailCheckbox, wait);
+    }
+
+    public void disableEnableWebNotificationsCheckbox(){
+        disableHideCheckbox(preferencesButton, enableWebNotificationsCheckbox, wait);
     }
 }

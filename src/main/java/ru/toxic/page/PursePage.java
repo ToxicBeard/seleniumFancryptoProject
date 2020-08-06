@@ -56,37 +56,47 @@ public class PursePage {
     }
 
     public void setIncomingType() {
-        Try.run(() -> wait.until(ExpectedConditions.elementToBeClickable(operationTypeSelect)))
+        Try.run(this::clickTransactionButton)
+                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(operationTypeSelect)))
                 .andThen(() -> operationTypeSelect.click())
                 .andThen(() -> incomingOption.click())
                 .get();
     }
 
     public void setOutgoingType() {
-        Try.run(() -> wait.until(ExpectedConditions.elementToBeClickable(operationTypeSelect)))
+        Try.run(this::clickTransactionButton)
+                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(operationTypeSelect)))
                 .andThen(() -> operationTypeSelect.click())
                 .andThen(() -> outgoingOption.click())
                 .get();
     }
 
-    public void clickBalanceButton(){
+    public void clickBalanceButton() {
         balanceButton.click();
     }
 
-    public void clickTransactionButton(){
+    public void clickTransactionButton() {
         transactionsButton.click();
     }
 
-    public void clickSendButton(){
-        sendButton.click();
+    public void clickSendButton() {
+        Try.run(this::clickBalanceButton)
+                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(sendButton)))
+                .andThen(() -> sendButton.click())
+                .get();
     }
 
-    public void clickGetButton(){
-        getButton.click();
+    public void clickGetButton() {
+        Try.run(this::clickBalanceButton)
+                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(getButton)))
+                .andThen(() -> getButton.click())
+                .get();
     }
 
     public void clickSearchButton(){
-        searchButton.click();
+        Try.run(this::clickTransactionButton)
+                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(searchButton)))
+                .andThen(()-> searchButton.click())
+                .get();
     }
-
 }
