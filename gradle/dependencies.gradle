@@ -1,0 +1,33 @@
+def springBootVer = '2.3.0.RELEASE'
+def lombokVer = '1.18.8'
+def junitVer = '4.12'
+def slf4jVer = '1.7.26'
+def cucumberVer = '5.7.0'
+def vavrVer = '0.9.0'
+def seleniumVer = '3.141.59'
+
+ext {
+    libs = [
+            springBootTest         : "org.springframework.boot:spring-boot-starter-test:$springBootVer",
+            selenium                   : "org.seleniumhq.selenium:selenium-java:$seleniumVer",
+            lombok                      : "org.projectlombok:lombok:$lombokVer",
+            junit                          : "junit:junit:$junitVer",
+            slf4jApi                     : "org.slf4j:slf4j-api:$slf4jVer",
+            logbackClassic         : "ch.qos.logback:logback-classic:1.2.3",
+            jclOverSlf4j               : "org.slf4j:jcl-over-slf4j:$slf4jVer",
+            julToSlf4j                  : "org.slf4j:jul-to-slf4j:$slf4jVer",
+            snakeYaml               : "org.yaml:snakeyaml:1.24",
+            cucumber_java8      : "io.cucumber:cucumber-java8:$cucumberVer",
+            cucumber_spring     : "io.cucumber:cucumber-spring:$cucumberVer",
+            cucumber_junit        : "io.cucumber:cucumber-junit:$cucumberVer",
+            vavr                          : "io.vavr:vavr:$vavrVer",
+            commons_lang3      :  "org.apache.commons:commons-lang3:3.10",
+            allure                        : "io.qameta.allure:allure-cucumber5-jvm:2.13.3",
+            allure_plugin             : "io.qameta.allure:allure-gradle:2.8.1"
+    ]
+
+    libs.cucumber = [libs.cucumber_java8, libs.cucumber_spring, libs.cucumber_junit, libs.allure]
+    libs.common = [libs.vavr, libs.commons_lang3, libs.snakeYaml, libs.selenium]
+    libs.tests = [libs.junit, libs.springBootTest]
+    libs.logging = [libs.slf4jApi, libs.logbackClassic, libs.jclOverSlf4j, libs.julToSlf4j]
+}
