@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.toxic.common.Common;
 
 import static io.vavr.control.Try.run;
 import static ru.toxic.common.Common.*;
@@ -136,14 +135,6 @@ public class CreateAdPage {
         setDataToInput(adHeaderInput, wait, dealHead);
     }
 
-    public void selectSaleRadioButton(){
-        clickCheckbox(saleRadioButton, wait);
-    }
-
-    public void selectBuyRadioButton(){
-        clickCheckbox(buyRadioButton, wait);
-    }
-
     public void setCountry(String country) {
         run(() -> setDataToInput(geolocationInput, wait, country))
                 .andThen(() -> geolocationInput.sendKeys(Keys.ARROW_DOWN))
@@ -151,32 +142,12 @@ public class CreateAdPage {
                 .get();
     }
 
-    public void setCurrency(String currency){
-        setValueFromSelectByValue(currencySelect, wait, currency);
-    }
-
-    public void setPaySystemForValue(String paySystem){
-        setValueFromSelectByValue(paySystemSelect, wait, paySystem);
-    }
-
-    public void setPaySystemForText(String paySystem){
-        setValueFromSelectByText(paySystemSelect, wait, paySystem);
-    }
-
     public void setTimeForPayment(String time){
-        setDataToInput(currencySelect, wait, time);
+        setDataToInput(timeForPayment, wait, time);
     }
 
     public void setProfit(String profit){
-        setDataToInput(currencySelect, wait, profit);
-    }
-
-    public void clickMinusProfitButton(){
-        profitMinusButton.click();
-    }
-
-    public void clickPlusProfitButton(){
-        profitPlusButton.click();
+        setDataToInput(profitInput, wait, profit);
     }
 
     public void setProfitEquation(String profitEquation){
@@ -191,140 +162,184 @@ public class CreateAdPage {
         setDataToInput(maxTransactionInput, wait, value);
     }
 
-    public void setSundayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(sundayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setSundayStartSelect(String time){
-        setValueFromSelectByText(sundayStartSelect, wait, time);
-    }
-
-    public void setSundayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(sundayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setSundayStopSelect(String time){
-        setValueFromSelectByText(sundayStopSelect, wait, time);
-    }
-
-    public void setMondayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(mondayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setMondayStartSelect(String time){
-        setValueFromSelectByText(mondayStartSelect, wait, time);
-    }
-
-    public void setMondayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(mondayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setMondayStopSelect(String time){
-        setValueFromSelectByText(mondayStopSelect, wait, time);
-    }
-
-    public void setTuesdayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(tuesdayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setTuesdayStartSelect(String time){
-        setValueFromSelectByText(tuesdayStartSelect, wait, time);
-    }
-
-    public void setTuesdayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(tuesdayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setTuesdayStopSelect(String time){
-        setValueFromSelectByText(tuesdayStopSelect, wait, time);
-    }
-
-    public void setWednesdayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(wednesdayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setWednesdayStartSelect(String time){
-        setValueFromSelectByText(wednesdayStartSelect, wait, time);
-    }
-
-    public void setWednesdayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(wednesdayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setWednesdayStopSelect(String time){
-        setValueFromSelectByText(wednesdayStopSelect, wait, time);
-    }
-
-    public void setThursdayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(thursdayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setThursdayStartSelect(String time){
-        setValueFromSelectByText(thursdayStartSelect, wait, time);
-    }
-
-    public void setThursdayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(thursdayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setThursdayStopSelect(String time){
-        setValueFromSelectByText(thursdayStopSelect, wait, time);
-    }
-
-    public void setFridayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(fridayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setFridayStartSelect(String time){
-        setValueFromSelectByText(fridayStartSelect, wait, time);
-    }
-
-    public void setFridayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(fridayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setFridayStopSelect(String time){
-        setValueFromSelectByText(fridayStopSelect, wait, time);
-    }
-
-    public void setSaturdayStartSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(saturdayStartSelect, wait, timeIntervalNum);
-    }
-
-    public void setSaturdayStartSelect(String time){
-        setValueFromSelectByText(saturdayStartSelect, wait, time);
-    }
-
-    public void setSaturdayStopSelectForIntervalNum(String timeIntervalNum){
-        setValueFromSelectByValue(saturdayStopSelect, wait, timeIntervalNum);
-    }
-
-    public void setSaturdayStopSelect(String time){
-        setValueFromSelectByText(saturdayStopSelect, wait, time);
-    }
-
     public void setDealInfo(String dealInfo){
         setDataToInput(dealInfoInput, wait, dealInfo);
     }
 
-    public void selectLiquidSawCheckbox(){
-        clickCheckbox(liquidSawCheckbox, wait);
+    public void selectCurrency(String currency){
+        selectValueFromSelectByValue(currencySelect, wait, currency);
     }
 
-    public void selectNotForAnonymousCheckbox(){
-        clickCheckbox(notForAnonymousCheckbox, wait);
+    public void selectPaySystemForValue(String paySystem){
+        selectValueFromSelectByValue(paySystemSelect, wait, paySystem);
     }
 
-    public void selectPhoneVerifiedCheckbox(){
-        clickCheckbox(phoneVerifiedCheckbox, wait);
+    public void selectPaySystemForText(String paySystem){
+        selectValueFromSelectByText(paySystemSelect, wait, paySystem);
     }
 
-    public void selectOnlyTrustedUsersCheckbox(){
-        clickCheckbox(onlyTrustedUsersCheckbox, wait);
+    public void selectSundayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(sundayStartSelect, wait, timeIntervalNum);
     }
 
-    public void selectClickReleaseDealButton(){
+    public void selectSundayStart(String time){
+        selectValueFromSelectByText(sundayStartSelect, wait, time);
+    }
+
+    public void selectSundayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(sundayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectSundayStop(String time){
+        selectValueFromSelectByText(sundayStopSelect, wait, time);
+    }
+
+    public void selectMondayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(mondayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectMondayStart(String time){
+        selectValueFromSelectByText(mondayStartSelect, wait, time);
+    }
+
+    public void selectMondayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(mondayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectMondayStop(String time){
+        selectValueFromSelectByText(mondayStopSelect, wait, time);
+    }
+
+    public void selectTuesdayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(tuesdayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectTuesdayStart(String time){
+        selectValueFromSelectByText(tuesdayStartSelect, wait, time);
+    }
+
+    public void selectTuesdayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(tuesdayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectTuesdayStop(String time){
+        selectValueFromSelectByText(tuesdayStopSelect, wait, time);
+    }
+
+    public void selectWednesdayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(wednesdayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectWednesdayStart(String time){
+        selectValueFromSelectByText(wednesdayStartSelect, wait, time);
+    }
+
+    public void selectWednesdayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(wednesdayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectWednesdayStop(String time){
+        selectValueFromSelectByText(wednesdayStopSelect, wait, time);
+    }
+
+    public void selectThursdayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(thursdayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectThursdayStart(String time){
+        selectValueFromSelectByText(thursdayStartSelect, wait, time);
+    }
+
+    public void selectThursdayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(thursdayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectThursdayStop(String time){
+        selectValueFromSelectByText(thursdayStopSelect, wait, time);
+    }
+
+    public void selectFridayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(fridayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectFridayStart(String time){
+        selectValueFromSelectByText(fridayStartSelect, wait, time);
+    }
+
+    public void selectFridayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(fridayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectFridayStop(String time){
+        selectValueFromSelectByText(fridayStopSelect, wait, time);
+    }
+
+    public void selectSaturdayStartForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(saturdayStartSelect, wait, timeIntervalNum);
+    }
+
+    public void selectSaturdayStart(String time){
+        selectValueFromSelectByText(saturdayStartSelect, wait, time);
+    }
+
+    public void selectSaturdayStopForIntervalNum(String timeIntervalNum){
+        selectValueFromSelectByValue(saturdayStopSelect, wait, timeIntervalNum);
+    }
+
+    public void selectSaturdayStop(String time){
+        selectValueFromSelectByText(saturdayStopSelect, wait, time);
+    }
+
+    public void clickMinusProfitButton(){
+        profitMinusButton.click();
+    }
+
+    public void clickPlusProfitButton(){
+        profitPlusButton.click();
+    }
+
+    public void clickReleaseDealButton(){
         releaseDealButton.click();
+    }
+
+    public void enableSaleRadioButton(){
+        enableCheckbox(saleRadioButton, wait);
+    }
+
+    public void enableBuyRadioButton(){
+        enableCheckbox(buyRadioButton, wait);
+    }
+
+    public void enableLiquidSawCheckbox(){
+        enableCheckbox(liquidSawCheckbox, wait);
+    }
+
+    public void enableNotForAnonymousCheckbox(){
+        enableCheckbox(notForAnonymousCheckbox, wait);
+    }
+
+    public void enablePhoneVerifiedCheckbox(){
+        enableCheckbox(phoneVerifiedCheckbox, wait);
+    }
+
+    public void enableOnlyTrustedUsersCheckbox(){
+        enableCheckbox(onlyTrustedUsersCheckbox, wait);
+    }
+
+    public void disableLiquidSawCheckbox(){
+        disableCheckbox(liquidSawCheckbox, wait);
+    }
+
+    public void disableNotForAnonymousCheckbox(){
+        disableCheckbox(notForAnonymousCheckbox, wait);
+    }
+
+    public void disablePhoneVerifiedCheckbox(){
+        disableCheckbox(phoneVerifiedCheckbox, wait);
+    }
+
+    public void disableOnlyTrustedUsersCheckbox(){
+        disableCheckbox(onlyTrustedUsersCheckbox, wait);
     }
 
 }

@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.toxic.model.Table;
 
+import static ru.toxic.common.Common.disableCheckbox;
+import static ru.toxic.common.Common.enableCheckbox;
+
 public class DashboardPage {
 
     private final WebDriverWait wait;
@@ -59,6 +62,7 @@ public class DashboardPage {
     public void clickAdsButton(){
         adsButton.click();
     }
+
     public void clickOpenDealsButton(){
         openDealsButton.click();
     }
@@ -83,12 +87,20 @@ public class DashboardPage {
         createAdButton.click();
     }
 
-    public void clickStopSalesCheckbox(){
-        stopSalesCheckbox.click();
+    public void enableStopSalesCheckbox(){
+        enableCheckbox(stopSalesCheckbox, wait);
     }
 
-    public void clickStopBuysCheckbox(){
-        stopBuysCheckbox.click();
+    public void enableStopBuysCheckbox(){
+        enableCheckbox(stopBuysCheckbox, wait);
+    }
+
+    public void disableStopSalesCheckbox(){
+        disableCheckbox(stopSalesCheckbox, wait);
+    }
+
+    public void disableStopBuysCheckbox(){
+        disableCheckbox(stopBuysCheckbox, wait);
     }
 
     public Table getAdsTable() {
