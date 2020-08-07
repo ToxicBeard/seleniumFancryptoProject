@@ -1,4 +1,4 @@
-package ru.toxic.stepdefs;
+package ru.toxic.stepdefs.pages;
 
 import io.cucumber.java8.Ru;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -269,6 +269,11 @@ public class BillsPageSteps implements Ru {
         Допустим("^нажимаю ссылку перехода \"Web Design\" на странице Счета$", () ->
                 run(this::createIfNotExist)
                         .andThen(() -> page.getMainPage().clickWebdesignLink())
+                        .get()
+        );
+        Допустим("^нажимаю ссылку перехода \"Выход\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> page.getMainPage().clickExitLink())
                         .get()
         );
     }

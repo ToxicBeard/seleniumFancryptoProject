@@ -1,4 +1,4 @@
-package ru.toxic.stepdefs;
+package ru.toxic.stepdefs.pages;
 
 import io.cucumber.java8.Ru;
 import org.springframework.beans.factory.annotation.Autowired;

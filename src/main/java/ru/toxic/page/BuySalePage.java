@@ -57,24 +57,24 @@ public class BuySalePage {
 
     // Default country is Russia
     public void setCountryByValue(String country){
-        setValueFromSelectByValue(selectCountry, wait, country);
+        selectValueFromSelectByValue(selectCountry, wait, country);
     }
 
     public void setCountryByText(String country){
-        setValueFromSelectByText(selectCountry, wait, country);
+        selectValueFromSelectByText(selectCountry, wait, country);
     }
 
     // Default currency is RUB (change with country)
     public void setCurrency(String currency){
-        setValueFromSelectByValue(selectCountry, wait, currency);
+        selectValueFromSelectByValue(selectCountry, wait, currency);
     }
 
     // Default system is QIWI (change with country)
     public void setPaySystemByValue(String system){
-        setValueFromSelectByValue(selectCountry, wait,system);
+        selectValueFromSelectByValue(selectCountry, wait,system);
     }
 
     public void setPaySystemByText(String system){
-        setValueFromSelectByText(selectCountry, wait,system);
+        selectValueFromSelectByText(selectCountry, wait,system);
     }
 }

@@ -87,7 +87,7 @@ public class ProfilePage {
     public ProfilePage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, 120);
         mainPage =  MainPage.builder().driver(driver).build();
-        mainPage.clickProfileLinkLink();
+        mainPage.clickProfileLink();
         wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
     }
@@ -101,7 +101,7 @@ public class ProfilePage {
     }
 
     public void setTimezone(String timezone){
-        setValueFromSelectByValue(timezoneSelect, wait, timezone);
+        selectValueFromSelectByValue(timezoneSelect, wait, timezone);
     }
 
     public void clickChangePasswordButton(){

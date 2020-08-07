@@ -18,7 +18,7 @@ public class Common {
         return Tuple.of(Thread.currentThread().getName());
     }
 
-    public static void setValueFromSelectByValue(@NonNull WebElement select, @NonNull WebDriverWait wait, @NonNull String value) {
+    public static void selectValueFromSelectByValue(@NonNull WebElement select, @NonNull WebDriverWait wait, @NonNull String value) {
         run(() -> wait.until(ExpectedConditions.elementToBeClickable(select)))
                 .andThen(select::click)
                 .andThen(() -> new Select(select).selectByValue(value))
@@ -26,7 +26,7 @@ public class Common {
                 .get();
     }
 
-    public static void setValueFromSelectByText(@NonNull WebElement select, @NonNull WebDriverWait wait, @NonNull String text) {
+    public static void selectValueFromSelectByText(@NonNull WebElement select, @NonNull WebDriverWait wait, @NonNull String text) {
         run(() -> wait.until(ExpectedConditions.elementToBeClickable(select)))
                 .andThen(select::click)
                 .andThen(() -> new Select(select).selectByVisibleText(text))

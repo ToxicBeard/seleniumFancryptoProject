@@ -33,6 +33,9 @@ public class MainPage {
     @FindBy(css = ".ml-auto > li:nth-child(2) > a:nth-child(1)")
     private WebElement purseLink;
 
+    @FindBy(css = "li.nav-item:nth-child(6) > a:nth-child(1)")
+    private WebElement exitLink;
+
     //Servive links
     @FindBy(css = "div.item:nth-child(1) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)")
     private WebElement webdesignLink;
@@ -160,8 +163,14 @@ public class MainPage {
     /**
      *  Можно вызвать только после авторизации
      */
-    public void clickProfileLinkLink(){
+    public void clickProfileLink(){
         profileLink.click();
     }
 
+    /**
+     *  Можно вызвать только после авторизации
+     */
+    public void clickExitLink(){
+        exitLink.click();
+    }
 }

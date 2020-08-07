@@ -272,23 +272,23 @@ public class BillsPage {
     }
 
     public void selectCourseByText(String value) {
-        setValueFromSelectByText(courseSelect, wait, value);
+        selectValueFromSelectByText(courseSelect, wait, value);
     }
 
     public void selectCourseByValue(String value) {
-        setValueFromSelectByValue(courseSelect, wait, value);
+        selectValueFromSelectByValue(courseSelect, wait, value);
     }
 
     public void selectLifetimeTimeUnitByText(String value) {
-        setValueFromSelectByText(lifetimeTimeUnitSelect, wait, value);
+        selectValueFromSelectByText(lifetimeTimeUnitSelect, wait, value);
     }
 
     public void selectLifetimeTimeUnitByValue(String value) {
-        setValueFromSelectByValue(courseSelect, wait, value);
+        selectValueFromSelectByValue(courseSelect, wait, value);
     }
 
     public void selectCurrency(String value) {
-        setValueFromSelectByValue(currencySelect, wait, value);
+        selectValueFromSelectByValue(currencySelect, wait, value);
     }
 
     public Table getThisTable() {
