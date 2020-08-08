@@ -7,33 +7,38 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static ru.toxic.common.Common.clickLinkOrButton;
 
 @Getter
 public class MainPage {
 
-    @FindBy(css = ".mr-auto")
+    private final WebDriverWait wait;
+
+    @FindBy(css = "#root > nav > a")
     private WebElement homeLink;
 
-    @FindBy(css = ".ml-auto > li:nth-child(1) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(1) > a")
     private WebElement buySaleLink;
 
-    @FindBy(css = ".ml-auto > li:nth-child(2) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(2) > a")
     private WebElement loginRegistrationLink;
 
-    @FindBy(css = "li.nav-item:nth-child(3) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(4) > a")
     private WebElement billsLink;
 
-    @FindBy(css = ".ml-auto > li:nth-child(4) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(5) > a")
     private WebElement dashboardLink;
 
     //Post Login
-    @FindBy(css = "li.nav-item:nth-child(3) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(3) > a")
     private WebElement profileLink;
 
-    @FindBy(css = ".ml-auto > li:nth-child(2) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(2) > a")
     private WebElement purseLink;
 
-    @FindBy(css = "li.nav-item:nth-child(6) > a:nth-child(1)")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(6) > a")
     private WebElement exitLink;
 
     //Servive links
@@ -79,98 +84,99 @@ public class MainPage {
     @Builder
     public MainPage(WebDriver driver) {
         driver.get("https://fancrypto.ru");
+        wait = new WebDriverWait(driver, 120);
         PageFactory.initElements(driver, this);
     }
 
-    public void clickHomeLink(){
-        homeLink.click();
+    public void clickHomeLink() {
+        clickLinkOrButton(homeLink, wait);
     }
 
-    public void clickBuySaleLink(){
-        buySaleLink.click();
-    }
-
-    /**
-     *  Можно вызвать только до авторизации
-     */
-    public void clickLoginRegistrationLink(){
-        loginRegistrationLink.click();
-    }
-
-    public void clickBillsLink(){
-        billsLink.click();
-    }
-
-    public void clickDashboardLink(){
-        dashboardLink.click();
-    }
-
-    public void clickWebdesignLink(){
-        webdesignLink.click();
-    }
-
-    public void clickDevelopmentLink(){
-        developmentLink.click();
-    }
-
-    public void clickHostingLink(){
-        hostingLink.click();
-    }
-
-    public void clickCompanyLink(){
-        companyLink.click();
-    }
-
-    public void clickTeamLink(){
-        teamLink.click();
-    }
-
-    public void clickLegacyLink(){
-        legacyLink.click();
-    }
-
-    public void clickJobOpeningsLink(){
-        jobOpeningsLink.click();
-    }
-
-    public void clickEmployeeSuccessLink(){
-        employeeSuccessLink.click();
-    }
-
-    public void clickBenefitsLink(){
-        benefitsLink.click();
-    }
-
-    public void clickFacebookLink(){
-        facebookLink.click();
-    }
-
-    public void clickTwitterLink(){
-        twitterLink.click();
-    }
-
-    public void clickInstagramLink(){
-        instagramLink.click();
+    public void clickBuySaleLink() {
+        clickLinkOrButton(buySaleLink, wait);
     }
 
     /**
-     *  Можно вызвать только после авторизации
+     * Можно вызвать только до авторизации
      */
-    public void clickPurseLink(){
-        purseLink.click();
+    public void clickLoginRegistrationLink() {
+        clickLinkOrButton(loginRegistrationLink, wait);
+    }
+
+    public void clickBillsLink() {
+        clickLinkOrButton(billsLink, wait);
+    }
+
+    public void clickDashboardLink() {
+        clickLinkOrButton(dashboardLink, wait);
+    }
+
+    public void clickWebdesignLink() {
+        clickLinkOrButton(webdesignLink, wait);
+    }
+
+    public void clickDevelopmentLink() {
+        clickLinkOrButton(developmentLink, wait);
+    }
+
+    public void clickHostingLink() {
+        clickLinkOrButton(hostingLink, wait);
+    }
+
+    public void clickCompanyLink() {
+        clickLinkOrButton(companyLink, wait);
+    }
+
+    public void clickTeamLink() {
+        clickLinkOrButton(teamLink, wait);
+    }
+
+    public void clickLegacyLink() {
+        clickLinkOrButton(legacyLink, wait);
+    }
+
+    public void clickJobOpeningsLink() {
+        clickLinkOrButton(jobOpeningsLink, wait);
+    }
+
+    public void clickEmployeeSuccessLink() {
+        clickLinkOrButton(employeeSuccessLink, wait);
+    }
+
+    public void clickBenefitsLink() {
+        clickLinkOrButton(benefitsLink, wait);
+    }
+
+    public void clickFacebookLink() {
+        clickLinkOrButton(facebookLink, wait);
+    }
+
+    public void clickTwitterLink() {
+        clickLinkOrButton(twitterLink, wait);
+    }
+
+    public void clickInstagramLink() {
+        clickLinkOrButton(instagramLink, wait);
     }
 
     /**
-     *  Можно вызвать только после авторизации
+     * Можно вызвать только после авторизации
      */
-    public void clickProfileLink(){
-        profileLink.click();
+    public void clickPurseLink() {
+        clickLinkOrButton(purseLink, wait);
     }
 
     /**
-     *  Можно вызвать только после авторизации
+     * Можно вызвать только после авторизации
      */
-    public void clickExitLink(){
-        exitLink.click();
+    public void clickProfileLink() {
+        clickLinkOrButton(profileLink, wait);
+    }
+
+    /**
+     * Можно вызвать только после авторизации
+     */
+    public void clickExitLink() {
+        clickLinkOrButton(exitLink, wait);
     }
 }

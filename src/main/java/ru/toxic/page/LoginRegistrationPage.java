@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static ru.toxic.common.Common.clickLinkOrButton;
 import static ru.toxic.common.Common.setDataToInput;
 
 public class LoginRegistrationPage {
@@ -51,11 +52,21 @@ public class LoginRegistrationPage {
         this.wait = new WebDriverWait(driver, 120);
         mainPage =  MainPage.builder().driver(driver).build();
         mainPage.clickLoginRegistrationLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
-    //Login form
+    public void clickLoginButton(){
+        clickLinkOrButton(loginButton, wait);
+    }
+
+    public void clickForgetPassLink(){
+        clickLinkOrButton(forgetLink, wait);
+    }
+
+    public void clickRegistrationButton(){
+        clickLinkOrButton(registrationButton, wait);
+    }
 
     public void setLoginForLogin(String login){
         setDataToInput(loginInputLoginForm, wait, login);
@@ -64,16 +75,6 @@ public class LoginRegistrationPage {
     public void setPasswordForLogin(String password){
         setDataToInput(passwordInputLoginForm, wait, password);
     }
-
-    public void clickLoginButton(){
-        loginButton.click();
-    }
-
-    public void clickForgetPassLink(){
-        forgetLink.click();
-    }
-
-    //Registration form
 
     public void setLoginForRegistration(String login){
         setDataToInput(loginInputRegistrationForm, wait, login);
@@ -85,10 +86,6 @@ public class LoginRegistrationPage {
 
     public void setConfirmPassword(String password){
         setDataToInput(confirmPasswordInput, wait, password);
-    }
-
-    public void clickRegistrationButton(){
-        registrationButton.click();
     }
 
     public void registerUser(String login, String password){
@@ -103,5 +100,6 @@ public class LoginRegistrationPage {
         setLoginForLogin(login);
         setPasswordForLogin(password);
         clickLoginButton();
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getProfileLink()));
     }
 }

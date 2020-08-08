@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.toxic.model.Table;
 
-import static ru.toxic.common.Common.disableCheckbox;
-import static ru.toxic.common.Common.enableCheckbox;
+import static ru.toxic.common.Common.*;
 
 public class DashboardPage {
 
@@ -53,69 +52,90 @@ public class DashboardPage {
     @Builder
     public DashboardPage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, 120);
-        mainPage =  MainPage.builder().driver(driver).build();
+        mainPage = MainPage.builder().driver(driver).build();
         mainPage.clickDashboardLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.visibilityOf(adsButton));
     }
 
-    public void clickAdsButton(){
-        adsButton.click();
+    public void clickAdsButton() {
+        clickLinkOrButton(adsButton,wait);
     }
 
-    public void clickOpenDealsButton(){
-        openDealsButton.click();
+    public void clickOpenDealsButton() {
+        clickLinkOrButton(openDealsButton, wait);
     }
 
-    public void clickEndsDealsButton(){
-        endsDealsButton.click();
+    public void clickEndsDealsButton() {
+        clickLinkOrButton(endsDealsButton, wait);
     }
 
-    public void clickCanceledDealsButton(){
-        canceledDealsButton.click();
+    public void clickCanceledDealsButton() {
+        clickLinkOrButton(canceledDealsButton,wait);
     }
 
-    public void clickDisputsButton(){
-        disputsButton.click();
+    public void clickDisputsButton() {
+        clickLinkOrButton(disputsButton, wait);
     }
 
-    public void clickMoreDealsButton(){
-        moreDealsButton.click();
-    }
-    
-    public void clickCreateAdButton(){
-        createAdButton.click();
+    public void clickMoreDealsButton() {
+        clickLinkOrButton(moreDealsButton,wait);
     }
 
-    public void enableStopSalesCheckbox(){
+    public void clickCreateAdButton() {
+        clickLinkOrButton(createAdButton,wait);
+    }
+
+    public void enableStopSalesCheckbox() {
         enableCheckbox(stopSalesCheckbox, wait);
     }
 
-    public void enableStopBuysCheckbox(){
+    public void enableStopBuysCheckbox() {
         enableCheckbox(stopBuysCheckbox, wait);
     }
 
-    public void disableStopSalesCheckbox(){
+    public void disableStopSalesCheckbox() {
         disableCheckbox(stopSalesCheckbox, wait);
     }
 
-    public void disableStopBuysCheckbox(){
+    public void disableStopBuysCheckbox() {
         disableCheckbox(stopBuysCheckbox, wait);
     }
 
     public Table getAdsTable() {
+        clickAdsButton();
         return Table.builder().table(adsTable).build();
     }
 
-    public void clickOnButtonForDeal(int dealNum){
-        getAdsTable().getRowsWithColumns().get(dealNum).get(1).click();
+    public void clickOnButtonForDeal(int dealNum) {
+        clickLinkOrButton(getAdsTable().getRowsWithColumns().get(dealNum).get(1), wait);
     }
 
-    public void clickEditButtonForDeal(int dealNum){
-        getAdsTable().getRowsWithColumns().get(dealNum).get(7).click();
+    public void clickEditButtonForDeal(int dealNum) {
+        clickLinkOrButton(getAdsTable().getRowsWithColumns().get(dealNum).get(7), wait);
     }
 
-    public void clickDeleteButtonForDeal(int dealNum){
-        getAdsTable().getRowsWithColumns().get(dealNum).get(8).click();
+    public void clickDeleteButtonForDeal(int dealNum) {
+        clickLinkOrButton(getAdsTable().getRowsWithColumns().get(dealNum).get(8), wait);
+    }
+
+    public Table getOpenDealsTable() {
+        clickOpenDealsButton();
+        return Table.builder().table(adsTable).build();
+    }
+
+    public Table getEndsDealsTable() {
+        clickEndsDealsButton();
+        return Table.builder().table(adsTable).build();
+    }
+
+    public Table getCanceledDealsTable() {
+        clickCanceledDealsButton();
+        return Table.builder().table(adsTable).build();
+    }
+
+    public Table getDisputsTable() {
+        clickDisputsButton();
+        return Table.builder().table(adsTable).build();
     }
 }

@@ -4,6 +4,7 @@ import io.cucumber.java8.Ru;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.toxic.page.DashboardPage;
 import ru.toxic.repository.DriverRepository;
+import ru.toxic.repository.TableRepository;
 
 import static io.vavr.control.Try.run;
 import static ru.toxic.common.Common.getUsedDriverKey;
@@ -11,7 +12,10 @@ import static ru.toxic.common.Common.getUsedDriverKey;
 public class DashboardPageSteps implements Ru {
 
     @Autowired
-    private DriverRepository repository;
+    private DriverRepository driverRepository;
+
+    @Autowired
+    private TableRepository tableRepository;
 
     private DashboardPage page;
 
@@ -176,9 +180,59 @@ public class DashboardPageSteps implements Ru {
                         .andThen(() -> page.getMainPage().clickExitLink())
                         .get()
         );
+        Допустим("^сохраняю таблицу вкладки \"Объявления\" на странице Панель управления$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getAdsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Открытые сделки\" на странице Панель управления$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getOpenDealsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Завершённые сделки\" на странице Панель управления$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getEndsDealsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Отменённые сделки\" на странице Панель управления$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getCanceledDealsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Диспуты\" на странице Панель управления$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getDisputsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Объявления\" на странице Панель управления$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getAdsTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Открытые сделки\" на странице Панель управления$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getOpenDealsTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Завершённые сделки\" на странице Панель управления$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getEndsDealsTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Отменённые сделки\" на странице Панель управления$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getCanceledDealsTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Диспуты\" на странице Панель управления$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getDisputsTable(), key))
+                        .get()
+        );
     }
 
     private void createIfNotExist() {
-        page = page == null ? DashboardPage.builder().driver(repository.getDriver(getUsedDriverKey())).build() : page;
+        page = page == null ? DashboardPage.builder().driver(driverRepository.getDriver(getUsedDriverKey())).build() : page;
     }
 }

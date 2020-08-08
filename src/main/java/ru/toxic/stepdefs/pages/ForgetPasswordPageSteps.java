@@ -11,7 +11,7 @@ import static ru.toxic.common.Common.getUsedDriverKey;
 public class ForgetPasswordPageSteps implements Ru {
 
     @Autowired
-    private DriverRepository repository;
+    private DriverRepository driverRepository;
 
     private ForgetPasswordPage page;
 
@@ -134,6 +134,6 @@ public class ForgetPasswordPageSteps implements Ru {
     }
 
     private void createIfNotExist() {
-        page = page == null ? ForgetPasswordPage.builder().driver(repository.getDriver(getUsedDriverKey())).build() : page;
+        page = page == null ? ForgetPasswordPage.builder().driver(driverRepository.getDriver(getUsedDriverKey())).build() : page;
     }
 }

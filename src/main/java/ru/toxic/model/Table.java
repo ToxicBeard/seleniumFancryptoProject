@@ -18,22 +18,23 @@ public class Table {
     private final WebElement table;
 
     public List<WebElement> getRows() {
-        return table
-                .findElement(By.xpath(".//tbody"))
-                .findElements(By.xpath(".//tr"));
+        return table.findElements(By.xpath(".//tbody//tr"));
+
     }
 
-    public List<WebElement> getHeads() {
-        return table
-                .findElement(By.xpath(".//thread"))
-                .findElement(By.xpath(".//tr"))
-                .findElements(By.xpath(".//th"));
+    public List<String> getHeads() {
+        return of((CheckedFunction0<ArrayList<String>>) ArrayList::new)
+                .andThen(resultList -> table
+                        .findElement(By.cssSelector("thead > tr"))
+                        .findElements(By.xpath("./th"))
+                        .forEach(element -> resultList.add(element.getText())))
+                .get();
     }
 
     public List<List<WebElement>> getRowsWithColumns() {
         return of((CheckedFunction0<List<List<WebElement>>>) ArrayList::new)
                 .andThen(list -> getRows()
-                        .forEach(row -> list.add(row.findElements(By.xpath(".//td")))))
+                        .forEach(row -> list.add(row.findElements(By.xpath("./td")))))
                 .get();
     }
 
@@ -45,29 +46,29 @@ public class Table {
                                         getRowsWithColumns().forEach(
                                                 row -> row.forEach(
                                                         column -> getHeads().forEach(
-                                                                heading -> StringElementMap.put(heading.getText(), column)
+                                                                heading -> StringElementMap.put(heading, column)
                                                         )))
                                 ).get()
                 )).get();
     }
 
-    public WebElement getValueFromCell(int row, int column){
+    public WebElement getValueFromCell(int row, int column) {
         return getRowsWithColumns()
                 .get(row - 1)
                 .get(column - 1);
     }
 
-    public WebElement getValueFromName(int row, String name){
+    public WebElement getValueFromName(int row, String name) {
         return getRowsWithHeadingColumns()
                 .get(row)
                 .get(name);
     }
 
-    public int getRowsCount(){
+    public int getRowsCount() {
         return getRows().size() + 1;
     }
 
-    public int getColumnsCount(){
+    public int getColumnsCount() {
         return getHeads().size() + 1;
     }
 }

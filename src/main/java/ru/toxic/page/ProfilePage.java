@@ -88,8 +88,8 @@ public class ProfilePage {
         this.wait = new WebDriverWait(driver, 120);
         mainPage =  MainPage.builder().driver(driver).build();
         mainPage.clickProfileLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
     public void setIntroduction(String introduction){
@@ -105,39 +105,39 @@ public class ProfilePage {
     }
 
     public void clickChangePasswordButton(){
-        changePasswordButton.click();
+        clickLinkOrButton(changePasswordButton, wait);
     }
 
     public void clickChangeEmailButton(){
-        changeEmailButton.click();
+        clickLinkOrButton( changeEmailButton, wait);
     }
 
     public void clickChangePhoneButton(){
-        changePhoneButton.click();
+        clickLinkOrButton( changePhoneButton, wait);
     }
 
     public void clickEnableTwoFactorAuthenticationButton(){
-        enableTwoFactorAuthenticationButton.click();
+        clickLinkOrButton(  enableTwoFactorAuthenticationButton, wait);
     }
 
     public void clickChangeTelegramNotificationButton(){
-        changeTelegramNotificationButton.click();
+        clickLinkOrButton( changeTelegramNotificationButton, wait);
     }
 
     public void clickChangeThirdPartyAppsButton(){
-        changeThirdPartyAppsButton.click();
+        clickLinkOrButton( changeThirdPartyAppsButton, wait);
     }
 
     public void clickViewSessionsButton(){
-        viewSessionsButton.click();
+        clickLinkOrButton(viewSessionsButton, wait);
     }
 
     public void clickDeleteAccountButton(){
-        deleteAccountButton.click();
+        clickLinkOrButton(deleteAccountButton, wait);
     }
 
     public void clickPreferencesButton(){
-        preferencesButton.click();
+        clickLinkOrButton(preferencesButton, wait);
     }
 
     public void enableStopSalesCheckbox(){

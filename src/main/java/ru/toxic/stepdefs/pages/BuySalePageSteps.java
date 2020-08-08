@@ -11,15 +11,15 @@ import static ru.toxic.common.Common.getUsedDriverKey;
 public class BuySalePageSteps implements Ru {
 
     @Autowired
-    private DriverRepository repository;
+    private DriverRepository driverRepository;
 
     private BuySalePage page;
 
     public BuySalePageSteps() {
         Допустим("^ввожу ([^\"]*) в поле поиска формы на странице Покупка/Продажа$", (String value) ->
-                        run(this::createIfNotExist)
-                                .andThen(() -> page.setSum(value))
-                                .get()
+                run(this::createIfNotExist)
+                        .andThen(() -> page.setSum(value))
+                        .get()
         );
         Допустим("^нажимаю на кнопку \"Поиск\" поиска  формы на странице Покупка/Продажа$", () ->
                 run(this::createIfNotExist)
@@ -149,6 +149,6 @@ public class BuySalePageSteps implements Ru {
     }
 
     private void createIfNotExist() {
-        page = page == null ? BuySalePage.builder().driver(repository.getDriver(getUsedDriverKey())).build() : page;
+        page = page == null ? BuySalePage.builder().driver(driverRepository.getDriver(getUsedDriverKey())).build() : page;
     }
 }

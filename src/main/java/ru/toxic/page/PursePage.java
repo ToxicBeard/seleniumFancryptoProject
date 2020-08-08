@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static ru.toxic.common.Common.clickLinkOrButton;
+
 public class PursePage {
 
     private final WebDriverWait wait;
@@ -49,10 +51,10 @@ public class PursePage {
     @Builder
     public PursePage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, 120);
-        mainPage =  MainPage.builder().driver(driver).build();
+        mainPage = MainPage.builder().driver(driver).build();
         mainPage.clickPurseLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
     public void setIncomingType() {
@@ -72,31 +74,28 @@ public class PursePage {
     }
 
     public void clickBalanceButton() {
-        balanceButton.click();
+        clickLinkOrButton(balanceButton, wait);
     }
 
     public void clickTransactionButton() {
-        transactionsButton.click();
+        clickLinkOrButton(transactionsButton, wait);
     }
 
     public void clickSendButton() {
         Try.run(this::clickBalanceButton)
-                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(sendButton)))
-                .andThen(() -> sendButton.click())
+                .andThen(() -> clickLinkOrButton(sendButton, wait))
                 .get();
     }
 
     public void clickGetButton() {
         Try.run(this::clickBalanceButton)
-                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(getButton)))
-                .andThen(() -> getButton.click())
+                .andThen(() -> clickLinkOrButton(getButton, wait))
                 .get();
     }
 
-    public void clickSearchButton(){
+    public void clickSearchButton() {
         Try.run(this::clickTransactionButton)
-                .andThen(() -> wait.until(ExpectedConditions.elementToBeClickable(searchButton)))
-                .andThen(()-> searchButton.click())
+                .andThen(() -> clickLinkOrButton(searchButton, wait))
                 .get();
     }
 }

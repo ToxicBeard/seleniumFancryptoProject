@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static ru.toxic.common.Common.clickLinkOrButton;
 import static ru.toxic.common.Common.setDataToInput;
 
 public class ForgetPasswordPage {
@@ -45,8 +46,8 @@ public class ForgetPasswordPage {
         this.wait = new WebDriverWait(driver, 120);
         mainPage =  MainPage.builder().driver(driver).build();
         loginRegistrationPage.clickForgetPassLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
     public void setPhoneEmail(String  phoneEmail){
@@ -66,10 +67,10 @@ public class ForgetPasswordPage {
     }
 
     public void clickSendRecoveryCodeButton(){
-        sendRecoveryCodeButton.click();
+        clickLinkOrButton(sendRecoveryCodeButton,wait);
     }
 
     public void clickChangePasswordButton(){
-        changePasswordButton.click();
+        clickLinkOrButton(changePasswordButton,wait);
     }
 }

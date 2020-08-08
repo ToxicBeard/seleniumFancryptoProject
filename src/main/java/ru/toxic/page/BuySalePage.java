@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static ru.toxic.common.Common.*;
@@ -41,18 +42,20 @@ public class BuySalePage {
         mainPage =  MainPage.builder().driver(driver).build();
         mainPage.clickBuySaleLink();
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
     public void clickAnotherDealType(){
-        fastSaleBuyTypeButton.click();
-    }
-
-    public void setSum(String sum){
-        setDataToInput(searchSumInput, wait, sum);
+        clickLinkOrButton(fastSaleBuyTypeButton, wait);
     }
 
     public void clickSearchButton(){
-        searchButton.click();
+        clickLinkOrButton(searchButton, wait);
+    }
+
+
+    public void setSum(String sum){
+        setDataToInput(searchSumInput, wait, sum);
     }
 
     // Default country is Russia

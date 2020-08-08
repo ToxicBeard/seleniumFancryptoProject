@@ -11,7 +11,7 @@ import static ru.toxic.common.Common.getUsedDriverKey;
 public class CreateAdPageSteps implements Ru {
 
     @Autowired
-    private DriverRepository repository;
+    private DriverRepository driverRepository;
 
     private CreateAdPage page;
 
@@ -371,6 +371,6 @@ public class CreateAdPageSteps implements Ru {
     }
 
     private void createIfNotExist() {
-        page = page == null ? CreateAdPage.builder().driver(repository.getDriver(getUsedDriverKey())).build() : page;
+        page = page == null ? CreateAdPage.builder().driver(driverRepository.getDriver(getUsedDriverKey())).build() : page;
     }
 }

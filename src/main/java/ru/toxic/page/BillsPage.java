@@ -19,8 +19,7 @@ public class BillsPage {
 
     @Getter
     private final MainPage mainPage;
-
-    @FindBy(css = ".dropdown-toggle")
+    @FindBy(css = "#root > div.container > div.pb-3.row > div > div > div.input-group-prepend > button")
     private WebElement typeSelect;
 
     //types start
@@ -41,27 +40,26 @@ public class BillsPage {
 
     //Post login
 
-    @FindBy(css = ".nav > li:nth-child(1) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(1) > a")
     private WebElement sendBillButton;
 
-    @FindBy(css = ".nav > li:nth-child(2) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(2) > a")
     private WebElement billsToMeButton;
 
-    @FindBy(css = ".nav > li:nth-child(3) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(3) > a")
     private WebElement billsFromMeButton;
 
-    @FindBy(css = ".nav > li:nth-child(4) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(4) > a")
     private WebElement publicBillsButton;
 
-    @FindBy(css = ".nav > li:nth-child(5) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(5) > a")
     private WebElement paymentsToMeButton;
 
-    @FindBy(css = ".nav > li:nth-child(6) > a:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.col > ul > li:nth-child(6) > a")
     private WebElement paymentsFromMeButton;
 
-    @FindBy(css = ".rounded-0")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div.container > div > div > table")
     private WebElement table;
-
     //Send bill
 
     @FindBy(css = "div.pt-3:nth-child(1) > div:nth-child(2) > div:nth-child(1) > label:nth-child(1) > input:nth-child(1)")
@@ -143,9 +141,8 @@ public class BillsPage {
     @Builder
     public BillsPage(WebDriver driver) {
         this.wait = new WebDriverWait(driver, 120);
-        mainPage =  MainPage.builder().driver(driver).build();
+        mainPage = MainPage.builder().driver(driver).build();
         mainPage.clickBillsLink();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
     }
 
@@ -164,6 +161,7 @@ public class BillsPage {
     }
 
     public void setBillNum(String billNum) {
+
         setDataToInput(numInput, wait, billNum);
     }
 
@@ -172,51 +170,51 @@ public class BillsPage {
     }
 
     public void clickSendBillButton() {
-        sendBillButton.click();
+        clickLinkOrButton(sendBillButton, wait);
     }
 
     public void clickBillsToMeButton() {
-        billsToMeButton.click();
+        clickLinkOrButton(billsToMeButton, wait);
     }
 
     public void clickBillsFromMeButton() {
-        billsFromMeButton.click();
+        clickLinkOrButton(billsFromMeButton, wait);
     }
 
     public void clickPublicBillsButton() {
-        publicBillsButton.click();
+        clickLinkOrButton(publicBillsButton, wait);
     }
 
     public void clickPaymentsToMeButton() {
-        paymentsToMeButton.click();
+        clickLinkOrButton(paymentsToMeButton, wait);
     }
 
     public void clickPaymentsFromMeButton() {
-        paymentsFromMeButton.click();
+        clickLinkOrButton(paymentsFromMeButton, wait);
     }
 
     public void clickCheckPartnerNameButton() {
-        checkPartnerNameButton.click();
+        clickLinkOrButton(checkPartnerNameButton, wait);
     }
 
     public void clickCreateBillButton() {
-        createBillButton.click();
+        clickLinkOrButton(createBillButton, wait);
     }
 
     public void clickMinPartsMinusButton() {
-        minPartsMinusButton.click();
+        clickLinkOrButton(minPartsMinusButton, wait);
     }
 
     public void clickMinPartsPlusButton() {
-        minPartsPlusButton.click();
+        clickLinkOrButton(minPartsPlusButton, wait);
     }
 
     public void clickMaxPartsMinusButton() {
-        maxPartsMinusButton.click();
+        clickLinkOrButton(maxPartsMinusButton, wait);
     }
 
     public void clickMaxPartsPlusButton() {
-        maxPartsPlusButton.click();
+        clickLinkOrButton(maxPartsPlusButton, wait);
     }
 
     public void enablePrivateBillRadioButton() {
@@ -243,31 +241,31 @@ public class BillsPage {
         disableCheckbox(limitLiquidCheckbox, wait);
     }
 
-    public void setCommentsInput(String data){
+    public void setCommentsInput(String data) {
         setDataToInput(commentsInput, wait, data);
     }
 
-    public void setLifetimeInput(String data){
+    public void setLifetimeInput(String data) {
         setDataToInput(lifetimeInput, wait, data);
     }
 
-    public void setPartnerNameInput(String data){
+    public void setPartnerNameInput(String data) {
         setDataToInput(partnerNameInput, wait, data);
     }
 
-    public void setSumInput(String data){
+    public void setSumInput(String data) {
         setDataToInput(sumInput, wait, data);
     }
 
-    public void setPartSumInput(String data){
+    public void setPartSumInput(String data) {
         setDataToInput(partSumInput, wait, data);
     }
 
-    public void setMaxPartsInput(String data){
+    public void setMaxPartsInput(String data) {
         setDataToInput(maxPartsInput, wait, data);
     }
 
-    public void setMinPartsInput(String data){
+    public void setMinPartsInput(String data) {
         setDataToInput(minPartsInput, wait, data);
     }
 
@@ -291,7 +289,33 @@ public class BillsPage {
         selectValueFromSelectByValue(currencySelect, wait, value);
     }
 
-    public Table getThisTable() {
+    public Table getBillsToMeTable() {
+        clickBillsToMeButton();
+        wait.until(ExpectedConditions.elementToBeClickable(table));
+        return Table.builder().table(table).build();
+    }
+
+    public Table getBillsFromMeTable() {
+        clickBillsFromMeButton();
+        wait.until(ExpectedConditions.elementToBeClickable(table));
+        return Table.builder().table(table).build();
+    }
+
+    public Table getPublicBillsTable() {
+        clickPublicBillsButton();
+        wait.until(ExpectedConditions.elementToBeClickable(table));
+        return Table.builder().table(table).build();
+    }
+
+    public Table getPaymentsToMeTable() {
+        clickPaymentsToMeButton();
+        wait.until(ExpectedConditions.elementToBeClickable(table));
+        return Table.builder().table(table).build();
+    }
+
+    public Table getPaymentsFromMeTable() {
+        clickPaymentsFromMeButton();
+        wait.until(ExpectedConditions.elementToBeClickable(table));
         return Table.builder().table(table).build();
     }
 }

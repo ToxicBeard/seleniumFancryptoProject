@@ -4,6 +4,7 @@ import io.cucumber.java8.Ru;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.toxic.page.BillsPage;
 import ru.toxic.repository.DriverRepository;
+import ru.toxic.repository.TableRepository;
 
 import static io.vavr.control.Try.run;
 import static ru.toxic.common.Common.getUsedDriverKey;
@@ -11,7 +12,10 @@ import static ru.toxic.common.Common.getUsedDriverKey;
 public class BillsPageSteps implements Ru {
 
     @Autowired
-    private DriverRepository repository;
+    private DriverRepository driverRepository;
+
+    @Autowired
+    private TableRepository tableRepository;
 
     private BillsPage page;
 
@@ -276,9 +280,59 @@ public class BillsPageSteps implements Ru {
                         .andThen(() -> page.getMainPage().clickExitLink())
                         .get()
         );
+        Допустим("^сохраняю таблицу вкладки \"Счета выставленные мне\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getBillsToMeTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Счета выставленные мной\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getBillsFromMeTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Публичные счета\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPublicBillsTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Платежи мне\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPaymentsToMeTable()))
+                        .get()
+        );
+        Допустим("^сохраняю таблицу вкладки \"Платежи от меня\" на странице Счета$", () ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPaymentsFromMeTable()))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Счета выставленные мне\" на странице Счета$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getBillsToMeTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Счета выставленные мной\" на странице Счета$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getBillsFromMeTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Публичные счета\" на странице Счета$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPublicBillsTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Платежи мне\" на странице Счета$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPaymentsToMeTable(), key))
+                        .get()
+        );
+        Допустим("^сохраняю с ключом ([^\"]*) таблицу вкладки \"Платежи от меня\" на странице Счета$", (String key) ->
+                run(this::createIfNotExist)
+                        .andThen(() -> tableRepository.save(page.getPaymentsFromMeTable(), key))
+                        .get()
+        );
     }
 
     private void createIfNotExist() {
-        page = (page == null) ? BillsPage.builder().driver(repository.getDriver(getUsedDriverKey())).build() : page;
+        page = (page == null) ? BillsPage.builder().driver(driverRepository.getDriver(getUsedDriverKey())).build() : page;
     }
 }

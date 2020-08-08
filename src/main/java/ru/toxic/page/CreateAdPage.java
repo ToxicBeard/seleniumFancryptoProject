@@ -127,8 +127,8 @@ public class CreateAdPage {
         this.wait = new WebDriverWait(driver, 120);
         mainPage =  MainPage.builder().driver(driver).build();
         DashboardPage.builder().driver(driver).build().clickCreateAdButton();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
         PageFactory.initElements(driver, this);
+        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getHomeLink()));
     }
 
     public void setDealHead(String dealHead){
@@ -291,15 +291,15 @@ public class CreateAdPage {
     }
 
     public void clickMinusProfitButton(){
-        profitMinusButton.click();
+        clickLinkOrButton(profitMinusButton, wait);
     }
 
     public void clickPlusProfitButton(){
-        profitPlusButton.click();
+        clickLinkOrButton(profitPlusButton, wait);
     }
 
     public void clickReleaseDealButton(){
-        releaseDealButton.click();
+        clickLinkOrButton(releaseDealButton, wait);
     }
 
     public void enableSaleRadioButton(){

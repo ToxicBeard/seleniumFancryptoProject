@@ -25,5 +25,9 @@ public class BrowserSteps implements Ru {
         Допустим("завершаю сессию IE", () ->
                 Try.of(() -> Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe")).get()
         );
+        After(scenario -> {
+                    if (scenario.isFailed()) repository.getDriver(getUsedDriverKey()).quit();
+                }
+        );
     }
 }

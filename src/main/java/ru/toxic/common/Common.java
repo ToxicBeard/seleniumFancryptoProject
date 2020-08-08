@@ -18,6 +18,16 @@ public class Common {
         return Tuple.of(Thread.currentThread().getName());
     }
 
+    @NonNull
+    public static Tuple getTableKey() {
+        return Tuple.of(Thread.currentThread().getName());
+    }
+
+    @NonNull
+    public static Tuple getTableKey(String tableName) {
+        return Tuple.of(tableName, Thread.currentThread().getName());
+    }
+
     public static void selectValueFromSelectByValue(@NonNull WebElement select, @NonNull WebDriverWait wait, @NonNull String value) {
         run(() -> wait.until(ExpectedConditions.elementToBeClickable(select)))
                 .andThen(select::click)
@@ -79,5 +89,11 @@ public class Common {
                         checkbox.click();
                     }
                 }).get();
+    }
+
+    public static void clickLinkOrButton(@NonNull WebElement linkOrButton, @NonNull WebDriverWait wait) {
+        run(() -> wait.until(ExpectedConditions.elementToBeClickable(linkOrButton)))
+                .andThen(linkOrButton::click)
+                .get();
     }
 }
