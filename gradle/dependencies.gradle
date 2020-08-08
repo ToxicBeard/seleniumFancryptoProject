@@ -9,7 +9,7 @@ def jooqVer = '13.3.3'
 ext {
     libs = [
             springBootTest         : "org.springframework.boot:spring-boot-starter-test:$springBootVer",
-            postgresql                 : "postgresql:postgresql:9.1-901-1.jdbc4",
+            postgresql                 : "org.postgresql:postgresql:42.2.14",
             jooq                           : "org.jooq:jooq:$jooqVer",
             jooqMeta                  : "org.jooq:jooq-meta:$jooqVer",
             jooqCodegen            : "org.jooq:jooq-codegen:$jooqVer",

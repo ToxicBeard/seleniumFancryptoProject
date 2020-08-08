@@ -67,23 +67,24 @@ task cucumber() {
 }
 
 
-
-jooq()  {
-    version = '3.13.4'
+jooq() {
+    version = '3.13.3'
     edition = 'OSS'
 
-    globalbitcoins_data(sourceSets.main){
-        jdbc{
+    globalbitcoins_data(sourceSets.main) {
+        jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'xxx'
-            user = 'xxx'
-            password = 'xxx'
+            url = 'jdbc:postgresql://fancrypto.ru:5432/globalbitcoins_data'
+            user = 'globalbitcoins'
+            password = 'globalbitcoins'
         }
         generator {
-            name = 'org.jooq.codegen.DefaultGenerator'
-            database{
+            name = 'org.jooq.codegen.JavaGenerator'
+            database {
                 name = 'org.jooq.meta.postgres.PostgresDatabase'
+                inputSchema = 'public'
                 includes = '.*'
+                excludes = " "
             }
             target {
                 packageName = 'ru.toxic.fancrypto.data'
@@ -91,18 +92,20 @@ jooq()  {
             }
         }
     }
-    globalbitcoins_identity(sourceSets.main){
-        jdbc{
+    globalbitcoins_identity(sourceSets.main) {
+        jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://xxx'
-            user = 'xxx'
-            password = 'xxx'
+            url = 'jdbc:postgresql://fancrypto.ru:5433/globalbitcoins_identity'
+            user = 'globalbitcoins'
+            password = 'globalbitcoins'
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
-            database{
+            database {
                 name = 'org.jooq.meta.postgres.PostgresDatabase'
+                inputSchema = 'public'
                 includes = '.*'
+                excludes = " "
             }
             target {
                 packageName = 'ru.toxic.fancrypto.identity'
@@ -111,6 +114,7 @@ jooq()  {
         }
     }
 }
+
 
 allure {
     autoconfigure = true
