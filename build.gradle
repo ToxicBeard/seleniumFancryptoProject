@@ -74,9 +74,9 @@ jooq() {
     globalbitcoins_data(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://wwwww'
-            user = 'globalbitcoins'
-            password = 'globalbitcoins'
+            url = 'jdbc:postgresql://xxx'
+            user = 'xxx'
+            password = 'xxx'
         }
         generator {
             name = 'org.jooq.codegen.JavaGenerator'
@@ -95,9 +95,9 @@ jooq() {
     globalbitcoins_identity(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://www'
-            user = 'globalbitcoins'
-            password = 'globalbitcoins'
+            url = 'jdbc:postgresql://xxx'
+            user = 'xxx'
+            password = 'xxx'
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
