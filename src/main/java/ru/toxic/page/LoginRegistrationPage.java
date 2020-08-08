@@ -93,13 +93,13 @@ public class LoginRegistrationPage {
         setPasswordForRegistration(password);
         setConfirmPassword(password);
         clickRegistrationButton();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getProfileLink()));
+        wait.until(ExpectedConditions.urlContains("profile"));
     }
 
     public void loginUser(String login, String password){
         setLoginForLogin(login);
         setPasswordForLogin(password);
         clickLoginButton();
-        wait.until(ExpectedConditions.elementToBeClickable(mainPage.getProfileLink()));
+        wait.until(ExpectedConditions.urlContains("profile"));
     }
 }

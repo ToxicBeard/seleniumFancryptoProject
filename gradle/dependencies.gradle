@@ -1,17 +1,20 @@
 def springBootVer = '2.3.0.RELEASE'
 def lombokVer = '1.18.8'
-def junitVer = '4.12'
 def slf4jVer = '1.7.26'
 def cucumberVer = '5.7.0'
 def vavrVer = '0.9.0'
 def seleniumVer = '3.141.59'
+def jooqVer = '13.3.3'
 
 ext {
     libs = [
             springBootTest         : "org.springframework.boot:spring-boot-starter-test:$springBootVer",
+            postgresql                 : "postgresql:postgresql:9.1-901-1.jdbc4",
+            jooq                           : "org.jooq:jooq:$jooqVer",
+            jooqMeta                  : "org.jooq:jooq-meta:$jooqVer",
+            jooqCodegen            : "org.jooq:jooq-codegen:$jooqVer",
             selenium                   : "org.seleniumhq.selenium:selenium-java:$seleniumVer",
             lombok                      : "org.projectlombok:lombok:$lombokVer",
-            junit                          : "junit:junit:$junitVer",
             slf4jApi                     : "org.slf4j:slf4j-api:$slf4jVer",
             logbackClassic         : "ch.qos.logback:logback-classic:1.2.3",
             jclOverSlf4j               : "org.slf4j:jcl-over-slf4j:$slf4jVer",
@@ -27,7 +30,8 @@ ext {
     ]
 
     libs.cucumber = [libs.cucumber_java8, libs.cucumber_spring, libs.cucumber_junit, libs.allure]
+    libs.jooq = [libs.postgresql, libs.jooqCodegen, libs.jooqMeta, libs.jooq]
     libs.common = [libs.vavr, libs.commons_lang3, libs.snakeYaml, libs.selenium]
-    libs.tests = [libs.junit, libs.springBootTest]
+    libs.tests = [ libs.springBootTest]
     libs.logging = [libs.slf4jApi, libs.logbackClassic, libs.jclOverSlf4j, libs.julToSlf4j]
 }
