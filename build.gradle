@@ -74,7 +74,7 @@ jooq() {
     globalbitcoins_data(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://fancrypto.ru:5432/globalbitcoins_data'
+            url = 'jdbc:postgresql://wwwww'
             user = 'globalbitcoins'
             password = 'globalbitcoins'
         }
@@ -95,7 +95,7 @@ jooq() {
     globalbitcoins_identity(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://fancrypto.ru:5433/globalbitcoins_identity'
+            url = 'jdbc:postgresql://www'
             user = 'globalbitcoins'
             password = 'globalbitcoins'
         }
