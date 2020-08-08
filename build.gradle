@@ -75,8 +75,8 @@ jooq() {
         jdbc {
             driver = 'org.postgresql.Driver'
             url = 'jdbc:postgresql://xxx'
-            user = 'xxx'
-            password = 'xxx'
+            user = 'user'
+            password = 'password'
         }
         generator {
             name = 'org.jooq.codegen.JavaGenerator'
@@ -96,8 +96,8 @@ jooq() {
         jdbc {
             driver = 'org.postgresql.Driver'
             url = 'jdbc:postgresql://xxx'
-            user = 'xxx'
-            password = 'xxx'
+            user = 'user'
+            password = 'password'
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
