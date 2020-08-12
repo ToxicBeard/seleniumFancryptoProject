@@ -74,7 +74,7 @@ jooq() {
     globalbitcoins_data(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://fancrypto.ru:5432/globalbitcoins_data'
+            url = 'jdbc:postgresql://xxx/globalbitcoins_data'
             user = 'globalbitcoins'
             password = 'globalbitcoins'
         }
@@ -84,10 +84,9 @@ jooq() {
                 name = 'org.jooq.meta.postgres.PostgresDatabase'
                 inputSchema = 'public'
                 includes = '.*'
-                excludes = " "
             }
             target {
-                packageName = 'ru.toxic.fancrypto.data'
+                packageName = 'ru.toxic.db.data'
                 directory = 'src/main/java'
             }
         }
@@ -95,26 +94,24 @@ jooq() {
     globalbitcoins_identity(sourceSets.main) {
         jdbc {
             driver = 'org.postgresql.Driver'
-            url = 'jdbc:postgresql://fancrypto.ru:5433/globalbitcoins_identity'
+            url = 'jdbc:postgresql://xxx/globalbitcoins_identity'
             user = 'globalbitcoins'
             password = 'globalbitcoins'
         }
         generator {
-            name = 'org.jooq.codegen.DefaultGenerator'
+            name = 'org.jooq.codegen.JavaGenerator'
             database {
                 name = 'org.jooq.meta.postgres.PostgresDatabase'
                 inputSchema = 'public'
                 includes = '.*'
-                excludes = " "
             }
             target {
-                packageName = 'ru.toxic.fancrypto.identity'
+                packageName = 'ru.toxic.db.identity'
                 directory = 'src/main/java'
             }
         }
     }
 }
-
 
 allure {
     autoconfigure = true
