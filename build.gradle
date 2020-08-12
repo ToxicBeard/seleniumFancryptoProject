@@ -4,7 +4,7 @@ plugins {
     id 'nu.studer.jooq' version '4.1'
 }
 
-group 'ru.toxic'
+group 'is.toxic'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'idea'
@@ -57,7 +57,7 @@ task cucumber() {
             args = [
                     '--plugin', 'pretty',
                     '--plugin', 'io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm',
-                    '--glue', 'ru.toxic', 'src\\main\\resources\\features',
+                    '--glue', 'is.toxic', 'src\\main\\resources\\features',
                     '--strict',
                     '--tags', '@TablesColumnName',
                     '--threads', '4'
@@ -86,7 +86,7 @@ jooq() {
                 includes = '.*'
             }
             target {
-                packageName = 'ru.toxic.db.data'
+                packageName = 'is.toxic.db.data'
                 directory = 'src/main/java'
             }
         }
@@ -106,7 +106,7 @@ jooq() {
                 includes = '.*'
             }
             target {
-                packageName = 'ru.toxic.db.identity'
+                packageName = 'is.toxic.db.identity'
                 directory = 'src/main/java'
             }
         }
