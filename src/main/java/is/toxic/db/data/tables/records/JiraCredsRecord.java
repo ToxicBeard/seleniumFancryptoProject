@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.JiraCreds;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record4;
 import org.jooq.Row4;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.JiraCreds;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.JiraCreds;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class JiraCredsRecord extends UpdatableRecordImpl<JiraCredsRecord> implements Record4<Long, String, String, String> {
 
-    private static final long serialVersionUID = -799200028;
+    private static final long serialVersionUID = 277155936;
 
     /**
      * Setter for <code>public.jira_creds.id</code>.

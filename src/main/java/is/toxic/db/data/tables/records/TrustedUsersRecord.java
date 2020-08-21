@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.TrustedUsers;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record3;
 import org.jooq.Row3;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.TrustedUsers;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.TrustedUsers;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TrustedUsersRecord extends UpdatableRecordImpl<TrustedUsersRecord> implements Record3<Long, Long, Long> {
 
-    private static final long serialVersionUID = 806876915;
+    private static final long serialVersionUID = -890633919;
 
     /**
      * Setter for <code>public.trusted_users.id</code>.

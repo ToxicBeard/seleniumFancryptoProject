@@ -4,10 +4,6 @@
 package is.toxic.db.data;
 
 
-import org.jooq.Index;
-import org.jooq.OrderField;
-import org.jooq.impl.Internal;
-
 import is.toxic.db.data.tables.AdMetadata;
 import is.toxic.db.data.tables.AdvertisementSnapshot;
 import is.toxic.db.data.tables.Advertisements;
@@ -30,6 +26,10 @@ import is.toxic.db.data.tables.TimeTables;
 import is.toxic.db.data.tables.TrustedUsers;
 import is.toxic.db.data.tables.UserDatas;
 import is.toxic.db.data.tables.UserEvents;
+
+import org.jooq.Index;
+import org.jooq.OrderField;
+import org.jooq.impl.Internal;
 
 
 /**

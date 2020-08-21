@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.__Efmigrationshistory;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record2;
 import org.jooq.Row2;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.__Efmigrationshistory;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.__Efmigrationshistory;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class __EfmigrationshistoryRecord extends UpdatableRecordImpl<__EfmigrationshistoryRecord> implements Record2<String, String> {
 
-    private static final long serialVersionUID = 2066488321;
+    private static final long serialVersionUID = 1878282677;
 
     /**
      * Setter for <code>public.__EFMigrationsHistory.MigrationId</code>.

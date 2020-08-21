@@ -1,13 +1,14 @@
 package is.toxic.stepdefs;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java8.Ru;
 import io.vavr.control.Try;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.springframework.beans.factory.annotation.Autowired;
-import static is.toxic.common.Common.getTableKey;
 import is.toxic.repository.TableRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import static is.toxic.common.Common.getTableKey;
+import static org.junit.Assert.assertEquals;
 
 public class TableChecksSteps implements Ru {
 
@@ -15,12 +16,14 @@ public class TableChecksSteps implements Ru {
     private TableRepository tableRepository;
 
     public TableChecksSteps() {
-        Допустим("проверяю, что таблица имеет названия столбцов:", (DataTable datatable) ->
-                Try.of(datatable::asList).andThen(expected -> Try.of(() ->
-                        tableRepository.getTable(getTableKey()).getHeads())
-                        .andThen(actual -> assertEquals("Полученое колличество названий столбцов не совпадает с ожидаемым", expected.size(), actual.size()))
-                        .andThen(actual -> assertTrue("Полученые названия столбцов отличаются от ожидаемых", expected.containsAll(actual)))
-                        .get())
+        Допустим("проверяю, что таблица имеет названия столбцов: {string}", (String arg) ->
+                Try.of(() -> List.of(arg.split(", ")))
+                        .andThen(expected -> Try.of(() ->
+                                tableRepository.getTable(getTableKey()).getHeads())
+                                .andThen(actual -> Try.run(() -> actual.removeIf(word -> word.equals(""))).get())
+                                .andThen(actual -> assertEquals("Полученое колличество названий столбцов не совпадает с ожидаемым", expected.size(), actual.size()))
+                                .andThen(actual -> assertEquals("Полученые названия столбцов отличаются от ожидаемых", expected, actual))
+                                .get())
                         .get()
         );
         Допустим("вывести в консоль строки", () ->

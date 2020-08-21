@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.InAddresses;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record5;
 import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.InAddresses;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.InAddresses;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class InAddressesRecord extends UpdatableRecordImpl<InAddressesRecord> implements Record5<Long, String, String, Long, Boolean> {
 
-    private static final long serialVersionUID = -138291677;
+    private static final long serialVersionUID = -244989021;
 
     /**
      * Setter for <code>public.in_addresses.id</code>.

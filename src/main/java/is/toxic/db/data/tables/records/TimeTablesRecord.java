@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.TimeTables;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record5;
 import org.jooq.Row5;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.TimeTables;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.TimeTables;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TimeTablesRecord extends UpdatableRecordImpl<TimeTablesRecord> implements Record5<Long, Integer, Short, Short, Long> {
 
-    private static final long serialVersionUID = 319623753;
+    private static final long serialVersionUID = 1890861883;
 
     /**
      * Setter for <code>public.time_tables.id</code>.

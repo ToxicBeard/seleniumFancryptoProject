@@ -4,12 +4,6 @@
 package is.toxic.db.data;
 
 
-import org.jooq.ForeignKey;
-import org.jooq.Identity;
-import org.jooq.TableField;
-import org.jooq.UniqueKey;
-import org.jooq.impl.Internal;
-
 import is.toxic.db.data.tables.AdMetadata;
 import is.toxic.db.data.tables.AdMetadataSnapshot;
 import is.toxic.db.data.tables.AdvertisementSnapshot;
@@ -72,6 +66,12 @@ import is.toxic.db.data.tables.records.UserDatasRecord;
 import is.toxic.db.data.tables.records.UserEventsRecord;
 import is.toxic.db.data.tables.records.VariablesMetadataRecord;
 import is.toxic.db.data.tables.records.__EfmigrationshistoryRecord;
+
+import org.jooq.ForeignKey;
+import org.jooq.Identity;
+import org.jooq.TableField;
+import org.jooq.UniqueKey;
+import org.jooq.impl.Internal;
 
 
 /**

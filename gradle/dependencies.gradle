@@ -8,6 +8,7 @@ def jooqVer = '13.3.3'
 
 ext {
     libs = [
+            jdbc                           : "org.springframework:spring-jdbc:5.2.6.RELEASE",
             springBootTest         : "org.springframework.boot:spring-boot-starter-test:$springBootVer",
             postgresql                 : "org.postgresql:postgresql:42.2.14",
             jooq                           : "org.jooq:jooq:$jooqVer",
@@ -30,7 +31,7 @@ ext {
     ]
 
     libs.cucumber = [libs.cucumber_java8, libs.cucumber_spring, libs.cucumber_junit, libs.allure]
-    libs.jooq = [libs.postgresql, libs.jooqCodegen, libs.jooqMeta, libs.jooq]
+    libs.jooq = [libs.postgresql, libs.jooqCodegen, libs.jooqMeta, libs.jooq, libs.jdbc]
     libs.common = [libs.vavr, libs.commons_lang3, libs.snakeYaml, libs.selenium]
     libs.tests = [ libs.springBootTest]
     libs.logging = [libs.slf4jApi, libs.logbackClassic, libs.jclOverSlf4j, libs.julToSlf4j]

@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.BlockedUsers;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record3;
 import org.jooq.Row3;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.BlockedUsers;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.BlockedUsers;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class BlockedUsersRecord extends UpdatableRecordImpl<BlockedUsersRecord> implements Record3<Long, Long, Long> {
 
-    private static final long serialVersionUID = -1750747512;
+    private static final long serialVersionUID = 1213159190;
 
     /**
      * Setter for <code>public.blocked_users.id</code>.

@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.UserDataSnapshot;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.UserDataSnapshot;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.UserDataSnapshot;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserDataSnapshotRecord extends UpdatableRecordImpl<UserDataSnapshotRecord> {
 
-    private static final long serialVersionUID = -1747021543;
+    private static final long serialVersionUID = 1666495207;
 
     /**
      * Setter for <code>public.user_data_snapshot.key</code>.

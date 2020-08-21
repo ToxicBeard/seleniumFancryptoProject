@@ -4,4 +4,4 @@
 /allure-results
 .allure
 /build/
-build.gradle
+config

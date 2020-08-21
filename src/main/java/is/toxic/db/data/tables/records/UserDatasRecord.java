@@ -4,13 +4,13 @@
 package is.toxic.db.data.tables.records;
 
 
+import is.toxic.db.data.tables.UserDatas;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.jooq.Record1;
 import org.jooq.impl.UpdatableRecordImpl;
-
-import is.toxic.db.data.tables.UserDatas;
 
 
 /**
@@ -19,7 +19,7 @@ import is.toxic.db.data.tables.UserDatas;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UserDatasRecord extends UpdatableRecordImpl<UserDatasRecord> {
 
-    private static final long serialVersionUID = 1949195378;
+    private static final long serialVersionUID = 991321958;
 
     /**
      * Setter for <code>public.user_datas.id</code>.

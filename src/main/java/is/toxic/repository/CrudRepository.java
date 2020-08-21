@@ -14,6 +14,8 @@ public interface CrudRepository<G ,T> {
 
     T find(G id);
 
+    T find(Condition condition);
+
     List<T> findAll(Condition condition);
 
     Boolean delete(G id);
