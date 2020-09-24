@@ -11,4 +11,4 @@ db:
     url: 'jdbc:postgresql://fancrypto.ru:5433/globalbitcoins_identity'
 cucumber:
   tags: '@Deals'
-  threads: 4
+  threads: 5

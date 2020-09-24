@@ -53,7 +53,7 @@ public class DealInfo {
                 .currency(entry.get("валюта"))
                 .country(entry.get("местоположение"))
                 .autoPrice(entry.get("авто цена").equals("да"))
-                .buy(Objects.equals(entry.get("тип"), "покупка"))
+                .buy(entry.get("покупка").equals("да"))
                 .forVerifiedNum(entry.get("номер телефона подтвержден").equals("да"))
                 .notForAnon(entry.get("не показывать объявление анонимным пользователям").equals("да"))
                 .onlyTrust(entry.get("только доверенные пользователи").equals("да"))
