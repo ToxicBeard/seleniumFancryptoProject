@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Builder
 public class Balance {
     private Long id;
-    private Long owner_id;
+    private Long owner_fk;
     private Integer currency;
     private BigDecimal balance;
     private BigDecimal unconfirmed_balance;

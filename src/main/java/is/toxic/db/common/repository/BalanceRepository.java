@@ -5,6 +5,7 @@ import is.toxic.db.data.tables.Balances;
 import is.toxic.repository.CrudRepository;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
+import org.jooq.impl.DefaultDSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ public class BalanceRepository implements CrudRepository<Long, Balance> {
     private final DSLContext dsl;
 
     @Autowired
-    public BalanceRepository(@Qualifier("dslData") DSLContext dsl) {
+    public BalanceRepository(@Qualifier("dataSourceData") DefaultDSLContext dsl) {
         this.dsl = dsl;
     }
 
