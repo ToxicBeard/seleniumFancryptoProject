@@ -1,2 +1,14 @@
 project:
-  host: https://fancrypto.ru
+  host: fancrypto.ru
+db:
+  data:
+    user: 'globalbitcoins'
+    password: 'globalbitcoins'
+    url: 'jdbc:postgresql://fancrypto.ru:5432/globalbitcoins_data'
+  identity:
+    user: 'globalbitcoins'
+    password: 'globalbitcoins'
+    url: 'jdbc:postgresql://fancrypto.ru:5433/globalbitcoins_identity'
+cucumber:
+  tags: '@Deals'
+  threads: 4

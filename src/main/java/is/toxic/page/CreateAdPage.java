@@ -1,6 +1,6 @@
 package is.toxic.page;
 
-import static io.vavr.control.Try.run;
+import is.toxic.model.DealInfo;
 import lombok.Builder;
 import lombok.Getter;
 import org.openqa.selenium.Keys;
@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static io.vavr.control.Try.run;
 import static is.toxic.common.Common.clickLinkOrButton;
 import static is.toxic.common.Common.disableCheckbox;
 import static is.toxic.common.Common.enableCheckbox;
@@ -125,6 +127,10 @@ public class CreateAdPage {
 
     @FindBy(css = ".mr-3")
     private WebElement releaseDealButton;
+
+    @FindBy(css = ".border-primary > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+    private WebElement autoPriceCheckbox;
+
 
     @Builder
     public CreateAdPage(WebDriver driver) {
@@ -330,6 +336,14 @@ public class CreateAdPage {
         enableCheckbox(onlyTrustedUsersCheckbox, wait);
     }
 
+    public void enableAutoPriceCheckbox(){
+        enableCheckbox(autoPriceCheckbox, wait);
+    }
+
+    public void disableAutoPriceCheckbox(){
+        disableCheckbox(autoPriceCheckbox, wait);
+    }
+
     public void disableLiquidSawCheckbox(){
         disableCheckbox(liquidSawCheckbox, wait);
     }
@@ -346,4 +360,43 @@ public class CreateAdPage {
         disableCheckbox(onlyTrustedUsersCheckbox, wait);
     }
 
+    public void createNewDeal(DealInfo info) {
+        setDealHead(info.getDealHead());
+        setDealInfo(info.getDealInfo());
+        if (info.getBuy()) {
+            enableBuyRadioButton();
+        }
+        setCountry(info.getCountry());
+        selectCurrency(info.getCurrency());
+        selectPaySystemForValue(info.getPaymentSystem());
+        if (info.getTimeOfPayment() != null) {
+            setTimeForPayment(info.getTimeOfPayment());
+        }
+        if (info.getProfit() != null) {
+            setProfit(info.getProfit());
+        }
+        if (info.getProfitAvg() != null) {
+            setProfitEquation(info.getProfitAvg());
+        }
+        if (info.getMinTransactionLimit() != null) {
+            setMinTransactionInput(info.getMinTransactionLimit());
+        }
+        setMaxTransactionInput(info.getMaxTransactionLimit());
+        if (info.getSeeLiq()) {
+            enableLiquidSawCheckbox();
+        }
+        if (info.getNotForAnon()) {
+            enableNotForAnonymousCheckbox();
+        }
+        if (info.getForVerifiedNum()) {
+            enablePhoneVerifiedCheckbox();
+        }
+        if (info.getOnlyTrust()) {
+            enableOnlyTrustedUsersCheckbox();
+        }
+        if (info.getAutoPrice()){
+            enableAutoPriceCheckbox();
+        }
+        clickReleaseDealButton();
+    }
 }
