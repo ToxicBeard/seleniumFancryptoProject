@@ -23,7 +23,7 @@ public class LoginRegistrationPage {
     @FindBy(css = "div.form-group:nth-child(2) > input:nth-child(1)")
     private WebElement loginInputLoginForm;
 
-    @FindBy(css = "div.col-sm-12:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div > div:nth-child(1) > div > div.card-body > form > div:nth-child(3) > input")
     private WebElement passwordInputLoginForm;
 
     @FindBy(css = ".mr-3")

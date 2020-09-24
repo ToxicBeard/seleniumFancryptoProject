@@ -1,5 +1,7 @@
 package is.toxic.page;
 
+import io.cucumber.java8.Tr;
+import io.vavr.control.Try;
 import is.toxic.model.DealInfo;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +37,7 @@ public class CreateAdPage {
     @FindBy(css = "div.form-check:nth-child(2) > label:nth-child(1) > input:nth-child(1)")
     private WebElement buyRadioButton;
 
-    @FindBy(css = ".border-danger")
+    @FindBy(css = "#root > div.container > div:nth-child(3) > div > div > div.card-body > div:nth-child(3) > div.col-sm-4 > input")
     private WebElement geolocationInput;
 
     @FindBy(css = "div.container:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > select:nth-child(1)")
@@ -47,7 +49,7 @@ public class CreateAdPage {
     @FindBy(css = "div.container:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(2) > input:nth-child(1)")
     private WebElement timeForPayment;
 
-    @FindBy(css = "input.form-control:nth-child(2)")
+    @FindBy(css = "#root > div.container > div:nth-child(4) > div > div > div.card-body > div:nth-child(5) > div.col-sm-4 > div > input")
     private WebElement profitInput;
 
     @FindBy(css = ".fa-minus")
@@ -62,7 +64,7 @@ public class CreateAdPage {
     @FindBy(css = "div.container:nth-child(2) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(6) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)")
     private WebElement minTransactionInput;
 
-    @FindBy(css = "div.pt-3:nth-child(7) > div:nth-child(2) > div:nth-child(1) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(4) > div > div > div.card-body > div:nth-child(8) > div.col-sm-4 > div > input")
     private WebElement maxTransactionInput;
 
     // Work time start
@@ -113,22 +115,22 @@ public class CreateAdPage {
     @FindBy(css = ".textarea")
     private WebElement dealInfoInput;
 
-    @FindBy(css = "div.container:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(5) > div > div > div.card-body > div > div.col-sm-4 > input[type=checkbox]")
     private WebElement liquidSawCheckbox;
 
-    @FindBy(css = "div.container:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(6) > div > div > div.card-body > div:nth-child(1) > div.col-sm-4 > input[type=checkbox]")
     private WebElement notForAnonymousCheckbox;
 
-    @FindBy(css = "div.container:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(6) > div > div > div.card-body > div:nth-child(2) > div.col-sm-4 > input[type=checkbox]")
     private WebElement phoneVerifiedCheckbox;
 
-    @FindBy(css = "div.container:nth-child(2) > div:nth-child(6) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(6) > div > div > div.card-body > div:nth-child(3) > div.col-sm-4 > input[type=checkbox]")
     private WebElement onlyTrustedUsersCheckbox;
 
-    @FindBy(css = ".mr-3")
+    @FindBy(css = "#root > div.container > div.pt-3.justify-content-end.row > button")
     private WebElement releaseDealButton;
 
-    @FindBy(css = ".border-primary > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > input:nth-child(1)")
+    @FindBy(css = "#root > div.container > div:nth-child(4) > div > div > div.card-body > div.border-primary.mt-3.card > div > div.pt-3.row > div.col-sm-4 > input[type=checkbox]")
     private WebElement autoPriceCheckbox;
 
 
@@ -147,6 +149,8 @@ public class CreateAdPage {
 
     public void setCountry(String country) {
         run(() -> setDataToInput(geolocationInput, wait, country))
+                .andThen(() ->  geolocationInput.click())
+                .andThen(() -> Try.run(()-> Thread.sleep(1000L)).get())
                 .andThen(() -> geolocationInput.sendKeys(Keys.ARROW_DOWN))
                 .andThen(() -> geolocationInput.sendKeys(Keys.ENTER))
                 .get();
@@ -368,17 +372,19 @@ public class CreateAdPage {
         }
         setCountry(info.getCountry());
         selectCurrency(info.getCurrency());
-        selectPaySystemForValue(info.getPaymentSystem());
-        if (info.getTimeOfPayment() != null) {
+        if (!info.getPaymentSystem().equals("[нет данных]")) {
+            selectPaySystemForText(info.getPaymentSystem());
+        }
+        if (!info.getTimeOfPayment().equals("[нет данных]")) {
             setTimeForPayment(info.getTimeOfPayment());
         }
-        if (info.getProfit() != null) {
+        if (!info.getProfit().equals("[нет данных]")) {
             setProfit(info.getProfit());
         }
-        if (info.getProfitAvg() != null) {
+        if (!info.getProfitAvg().equals("[нет данных]")) {
             setProfitEquation(info.getProfitAvg());
         }
-        if (info.getMinTransactionLimit() != null) {
+        if (!info.getMinTransactionLimit().equals("[нет данных]")) {
             setMinTransactionInput(info.getMinTransactionLimit());
         }
         setMaxTransactionInput(info.getMaxTransactionLimit());
@@ -394,9 +400,9 @@ public class CreateAdPage {
         if (info.getOnlyTrust()) {
             enableOnlyTrustedUsersCheckbox();
         }
-        if (info.getAutoPrice()){
-            enableAutoPriceCheckbox();
-        }
+//        if (info.getAutoPrice()){
+//            enableAutoPriceCheckbox();
+//        }
         clickReleaseDealButton();
     }
 }

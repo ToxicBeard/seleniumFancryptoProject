@@ -20,13 +20,13 @@ public class MainPage {
     @FindBy(css = "#root > nav > div > ul > li:nth-child(1) > a")
     private WebElement buySaleLink;
 
-    @FindBy(css = "#root > nav > div > ul > li:nth-child(2) > a")
+    @FindBy(xpath = "//*[@id=\"root\"]/nav/div/ul/li[3]/a")
     private WebElement loginRegistrationLink;
 
     @FindBy(css = "#root > nav > div > ul > li:nth-child(4) > a")
     private WebElement billsLink;
 
-    @FindBy(css = "#root > nav > div > ul > li:nth-child(5) > a")
+    @FindBy(css = "#root > nav > div > ul > li:nth-child(6) > a")
     private WebElement dashboardLink;
 
     //Post Login
